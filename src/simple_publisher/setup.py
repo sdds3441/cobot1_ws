@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'dsr_rokey2'
+package_name = 'simple_publisher'
 
 setup(
     name=package_name,
@@ -13,10 +13,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='hyochan',
-    maintainer_email='khcc0519@gmail.com',
+    maintainer='nj',
+    maintainer_email='nj@todo.todo',
     description='TODO: Package description',
-    license='Apache-2.0',
+    license='TODO: License declaration',
     extras_require={
         'test': [
             'pytest',
@@ -24,14 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'sky_cleaner = dsr_rokey2.sky_cleaner:main',
-            'move_periodic = dsr_rokey2.move_periodic:main',
-            'grip_test = dsr_rokey2.grip_test:main',
-            'force_test = dsr_rokey2.force_test:main',
-            'grip_tool = dsr_rokey2.grip_tool:main',
-            'home = dsr_rokey2.home:main',
-            'up = dsr_rokey2.up:main',
-            'cleanning_task = dsr_rokey2.cleanning_task:main',
+            'progress_publisher = simple_publisher.publisher_node:main',
         ],
     },
 )
