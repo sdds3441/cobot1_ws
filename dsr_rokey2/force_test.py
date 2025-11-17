@@ -1,5 +1,7 @@
 import rclpy
+from rclpy.node import Node
 import DR_init
+
 
 # 로봇 설정 상수 (필요에 따라 수정)
 ROBOT_ID = "dsr01"
@@ -36,7 +38,9 @@ def initialize_robot():
     print("#"*50)
 
 class ExternalTorqueClient(Node):
+    
     def __init__(self):
+        from dsr_msgs2.srv import GetExternalTorque
         super().__init__('external_torque_client')
 
         # 서비스 클라이언트 생성
@@ -50,6 +54,7 @@ class ExternalTorqueClient(Node):
             self.get_logger().info('서비스 대기중...')
 
     def request_torque(self):
+        from dsr_msgs2.srv import GetExternalTorque
         req = GetExternalTorque.Request()  # 요청필드 없음 → 빈 객체 생성만 하면 됨
 
         future = self.cli.call_async(req)
@@ -65,6 +70,14 @@ def perform_task():
     from dsr_msgs2.srv import GetExternalTorque
     JReady = [0, 0, 90, 0, 90, 0]
     movej(JReady, vel=VELOCITY, acc=ACC)
+    node = ExternalTorqueClient()
+
+    result = node.request_torque()
+
+    print("External Torque (Nm):")
+    print(list(result.ext_torque))
+    print("Success:", result.success)
+
     set_ref_coord(1)
     task_compliance_ctrl([3000.00, 3000.00, 3000.00, 200.00, 200.00, 200.00])
     #set_stiffnessx([3000.00, 3000.00, 3000.00, 200.00, 200.00, 200.00])
@@ -72,8 +85,12 @@ def perform_task():
     set_desired_force(fd=[0, 0, 15, 0, 0, 0], dir=[0, 0, 1, 0, 0, 0], time=0, mod=DR_FC_MOD_REL)
     
     wait(5)
+    print("External Torque (Nm):")
+    print(list(result.ext_torque))
+    print("Success:", result.success)
     release_force(time=0.0)
     release_compliance_ctrl()
+    
 
 
    
