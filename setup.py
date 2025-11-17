@@ -32,6 +32,8 @@ setup(
             'home = dsr_rokey2.home:main',
             'up = dsr_rokey2.up:main',
             'cleanning_task = dsr_rokey2.cleanning_task:main',
+            'pose_reader = dsr_rokey2.pose_reader:main',
+            'pose_reader2 = dsr_rokey2.pose_reader2:main',
         ],
     },
 )

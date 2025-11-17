@@ -39,17 +39,23 @@ def initialize_robot():
 def perform_task():
     """로봇이 수행할 작업"""
     print("Performing task...")
-    from DSR_ROBOT2 import posx,movej,movel, move_periodic,DR_TOOL # 필요한 기능만 임포트 
+    from DSR_ROBOT2 import posx,movej,movel, move_periodic,DR_TOOL,DR_FC_MOD_REL # 필요한 기능만 임포트 
     
     # 초기 위치 및 목표 위치 설정
     JReady = [0, 0, 90, 0, 90, 0]
-    pos1 = [0, 0, 90, 0, 90, 20]
-    pos2 = [0, 0, 90, 0, 90, -20]
+    pos1 = posx([0,0,100,0,0,0])
+    pos2 = posx([0,0,-100,0,0,0])
+
 
     # 반복 동작 수행
     print("move_home")
-    movej(JReady, vel=VELOCITY, acc=ACC)
-    move_periodic(amp=[10,0,0,0,30,0], period=5.0, atime=2,repeat=5, ref=DR_TOOL)
+    for i in range(5):
+        if i==0:
+            movej(JReady, vel=VELOCITY, acc=ACC)
+        movel(pos1, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
+        movej([10,20,0,0,0,0], vel=VELOCITY, acc=ACC,mod=DR_FC_MOD_REL)
+        movel(pos2, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
+    #move_periodic(amp=[10,0,0,0,30,0], period=5.0, atime=2,repeat=5, ref=DR_TOOL)
 
    
     
