@@ -1,5 +1,15 @@
 ## 📌 주요 실행 파일 안내
 
+### `topic_test.py` (Main)
+#### ros2 run dsr_rokey2 topic_test
+
+토픽 실험
+
+### `service_test.py` (Main)
+#### ros2 run dsr_rokey2 service_test
+
+서비스 실험
+
 ### `sky_cleaner.py` (Main)
 #### ros2 run dsr_rokey2 move_basic
 
