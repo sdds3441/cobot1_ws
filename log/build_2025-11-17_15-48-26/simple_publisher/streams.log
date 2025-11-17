@@ -1,0 +1,24 @@
+[0.500s] Invoking command in '/home/nj/cobot1_ws/build/simple_publisher': PYTHONPATH=/home/nj/cobot1_ws/build/simple_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nj/cobot1_ws/install/simple_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nj/cobot1_ws/build/simple_publisher/build --no-deps symlink_data
+[0.712s] running develop
+[0.856s] running egg_info
+[0.856s] creating simple_publisher.egg-info
+[0.856s] writing simple_publisher.egg-info/PKG-INFO
+[0.857s] writing dependency_links to simple_publisher.egg-info/dependency_links.txt
+[0.857s] writing entry points to simple_publisher.egg-info/entry_points.txt
+[0.857s] writing requirements to simple_publisher.egg-info/requires.txt
+[0.857s] writing top-level names to simple_publisher.egg-info/top_level.txt
+[0.857s] writing manifest file 'simple_publisher.egg-info/SOURCES.txt'
+[0.858s] reading manifest file 'simple_publisher.egg-info/SOURCES.txt'
+[0.859s] writing manifest file 'simple_publisher.egg-info/SOURCES.txt'
+[0.860s] running build_ext
+[0.860s] Creating /home/nj/cobot1_ws/install/simple_publisher/lib/python3.10/site-packages/simple-publisher.egg-link (link to .)
+[0.860s] Installing progress_publisher script to /home/nj/cobot1_ws/install/simple_publisher/lib/simple_publisher
+[0.860s] 
+[0.861s] Installed /home/nj/cobot1_ws/build/simple_publisher
+[0.861s] running symlink_data
+[0.861s] creating /home/nj/cobot1_ws/install/simple_publisher/share/ament_index
+[0.861s] creating /home/nj/cobot1_ws/install/simple_publisher/share/ament_index/resource_index
+[0.861s] creating /home/nj/cobot1_ws/install/simple_publisher/share/ament_index/resource_index/packages
+[0.861s] symbolically linking /home/nj/cobot1_ws/build/simple_publisher/resource/simple_publisher -> /home/nj/cobot1_ws/install/simple_publisher/share/ament_index/resource_index/packages
+[0.861s] symbolically linking /home/nj/cobot1_ws/build/simple_publisher/package.xml -> /home/nj/cobot1_ws/install/simple_publisher/share/simple_publisher
+[0.887s] Invoked command in '/home/nj/cobot1_ws/build/simple_publisher' returned '0': PYTHONPATH=/home/nj/cobot1_ws/build/simple_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nj/cobot1_ws/install/simple_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nj/cobot1_ws/build/simple_publisher/build --no-deps symlink_data

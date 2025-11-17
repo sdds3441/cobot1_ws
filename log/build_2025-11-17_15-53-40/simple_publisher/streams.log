@@ -1,0 +1,17 @@
+[0.497s] Invoking command in '/home/nj/cobot1_ws/build/simple_publisher': PYTHONPATH=/home/nj/cobot1_ws/build/simple_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nj/cobot1_ws/install/simple_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nj/cobot1_ws/build/simple_publisher/build --no-deps symlink_data
+[0.690s] running develop
+[0.825s] running egg_info
+[0.825s] writing simple_publisher.egg-info/PKG-INFO
+[0.826s] writing dependency_links to simple_publisher.egg-info/dependency_links.txt
+[0.826s] writing entry points to simple_publisher.egg-info/entry_points.txt
+[0.826s] writing requirements to simple_publisher.egg-info/requires.txt
+[0.826s] writing top-level names to simple_publisher.egg-info/top_level.txt
+[0.828s] reading manifest file 'simple_publisher.egg-info/SOURCES.txt'
+[0.829s] writing manifest file 'simple_publisher.egg-info/SOURCES.txt'
+[0.830s] running build_ext
+[0.830s] Creating /home/nj/cobot1_ws/install/simple_publisher/lib/python3.10/site-packages/simple-publisher.egg-link (link to .)
+[0.831s] Installing progress_publisher script to /home/nj/cobot1_ws/install/simple_publisher/lib/simple_publisher
+[0.831s] 
+[0.831s] Installed /home/nj/cobot1_ws/build/simple_publisher
+[0.831s] running symlink_data
+[0.853s] Invoked command in '/home/nj/cobot1_ws/build/simple_publisher' returned '0': PYTHONPATH=/home/nj/cobot1_ws/build/simple_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nj/cobot1_ws/install/simple_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nj/cobot1_ws/build/simple_publisher/build --no-deps symlink_data

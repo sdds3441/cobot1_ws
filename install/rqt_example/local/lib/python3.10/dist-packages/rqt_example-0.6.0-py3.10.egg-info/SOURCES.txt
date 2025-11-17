@@ -1,0 +1,1 @@
+/home/nj/cobot1_ws/build/rqt_example/ament_cmake_python/rqt_example/rqt_example.egg-info/SOURCES.txt

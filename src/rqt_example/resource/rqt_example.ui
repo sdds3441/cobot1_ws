@@ -67,7 +67,7 @@
       <x>0</x>
       <y>30</y>
       <width>341</width>
-      <height>181</height>
+      <height>261</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="grid_layout">
@@ -84,6 +84,24 @@
         <string>emergency stop</string>
        </property>
       </widget>
+     </item>
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QCheckBox" name="checkBox_roller">
+         <property name="text">
+          <string>roller</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_cloth">
+         <property name="text">
+          <string>cloth</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item row="4" column="0">
       <widget class="QPushButton" name="push_button_end">
@@ -116,23 +134,12 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QCheckBox" name="checkBox_roller">
-         <property name="text">
-          <string>roller</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_cloth">
-         <property name="text">
-          <string>cloth</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_state">
+       <property name="text">
+        <string>work state</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

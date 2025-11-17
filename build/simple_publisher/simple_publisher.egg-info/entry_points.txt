@@ -1,0 +1,3 @@
+[console_scripts]
+progress_publisher = simple_publisher.publisher_node:main
+
