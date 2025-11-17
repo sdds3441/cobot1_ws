@@ -24,13 +24,14 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'move_basic = dsr_rokey2.move_basic:main',
+            'sky_cleaner = dsr_rokey2.sky_cleaner:main',
             'move_periodic = dsr_rokey2.move_periodic:main',
             'grip_test = dsr_rokey2.grip_test:main',
             'force_test = dsr_rokey2.force_test:main',
             'grip_tool = dsr_rokey2.grip_tool:main',
             'home = dsr_rokey2.home:main',
             'up = dsr_rokey2.up:main',
+            'cleanning_task = dsr_rokey2.cleanning_task:main',
         ],
     },
 )
