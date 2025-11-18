@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[branch "main"]
+	vscode-merge-base = origin/humble
+	remote = origin
+	merge = refs/heads/main
+[remote "origin"]
+	url = https://github.com/sdds3441/cobot1_ws.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
