@@ -1,5 +1,8 @@
 ## 📌 주요 실행 파일 안내
 
+### 작업영역 x:500-200, y:-600, z:500-200
+
+
 ### `topic_test.py` (Main)
 #### ros2 run dsr_rokey2 topic_test
 
