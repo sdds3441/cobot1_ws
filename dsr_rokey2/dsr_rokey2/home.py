@@ -38,7 +38,8 @@ def initialize_robot():
 
 def perform_task():
     """로봇이 수행할 작업"""
-    print("Performing task...")
+    print("Performing task..@@@##.")
+    print(">>> NEW HOME SCRIPT RUNNING <<<")
     from DSR_ROBOT2 import posx,movej,movel, move_periodic,DR_TOOL,wait # 필요한 기능만 임포트 
     from DSR_ROBOT2 import set_digital_output, wait
     JReady = [0, 0, 90, 0, 90, 0]
@@ -59,6 +60,7 @@ def main(args=None):
 
     # DR_init에 노드 설정
     DR_init.__dsr__node = node
+    
 
     try:
         # 초기화는 한 번만 수행
