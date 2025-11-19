@@ -42,13 +42,11 @@ def perform_task():
     from DSR_ROBOT2 import posx,movej,movel, move_periodic,DR_TOOL,wait # 필요한 기능만 임포트 
     from DSR_ROBOT2 import set_digital_output, wait
     JReady = [0, 0, 90, 0, 90, 0]
-
-
-    movej(JReady,vel=VELOCITY,acc=ACC)
-    wait(3)
     set_digital_output(1,0)
     set_digital_output(2,1)
-    wait(1)
+    wait(3)
+    movej(JReady,vel=VELOCITY,acc=ACC)
+   
    
     
 

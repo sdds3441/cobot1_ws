@@ -81,8 +81,8 @@ def roller_task():
     #wait(0.5) 
     # for 반복문: path_points 리스트의 모든 점을 순서대로 방문
     for i, point in enumerate(path_points):
-        if i == 0:
-            movel(([520,Y_CONST-20,450,90,-90,0]), vel=VELOCITY, acc=ACC)
+        # if i == 0:
+        #     movel(([520,Y_CONST-20,450,90,-90,0]), vel=VELOCITY, acc=ACC)
         print(f"Moving to point {i+1}...")
         movel(point, vel=VELOCITY, acc=ACC)
 
@@ -98,16 +98,16 @@ def cloth_task():
     # 초기 위치 및 목표 위치 설정
     home = [0, 0, 90, 0, 90, 0]
     y_val= -500
-    ready_pos = posx([500, y_val, 500, 90, -90, 90])
-    attach=posx([0,-20,0,0,0,0])
-    #detach=posx([500,y_val+20,200,90,-90,90])
+    #ready_pos = posx([300, y_val, 500, 90, -90, 90])
+    ready_pos = posx([300, y_val, 500, 90, -90, 0])
+    attach=posx([0,-10,0,0,0,0])
     down = posx([0,0,-300,0,0,0])
 
     movel(ready_pos, vel=VELOCITY, acc=ACC)
     
-    for i in range(1,8):   #실전에선 6    
+    for i in range(1,10):   #실전에선 6    
 
-        task_compliance_ctrl([500.00, 200.00, 10.00, 10.00, 10.00, 10.00])
+        task_compliance_ctrl([200.00, 100.00, 10.00, 10.00, 10.00, 10.00])
         wait(0.2) 
         movel(attach,vel=VELOCITY,acc=ACC,mod=DR_FC_MOD_REL)
         movel(down, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
@@ -115,11 +115,12 @@ def cloth_task():
         #detach[0]=detach[0]-120
         release_compliance_ctrl()
 
-        if i<7: #실전에선 5
-            next_pos=posx([ready_pos[0]-110*i,y_val+20,500,90,-90,90])
+        if i<9: #실전에선 5
+            #next_pos=posx([ready_pos[0]-100*i,y_val+10,500,90,-90,90])
+            next_pos=posx([ready_pos[0]-70*i,y_val+10,500, 90, -90, 0])
             movel(next_pos, vel=VELOCITY, acc=ACC)
 
-    movel(([500, y_val+20, 500, 90, -90, 90]), vel=VELOCITY, acc=ACC)
+    movel(([300, y_val+20, 500, 90, -90, 0]), vel=VELOCITY, acc=ACC)
 
 
 def pickup_roller():
