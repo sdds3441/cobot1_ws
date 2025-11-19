@@ -166,79 +166,79 @@ def move_to_safe_pos():
 
 def roller_move_p1(): 
     from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 500; X_MAX = 500
+    Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 450; X_MAX = 520
     safe_move(movel, posx([X_MAX, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P1: (500, 500) 이동 완료.")
 def roller_move_p2():
     from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 500; X_MIN = -210
+    Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 450; X_MIN = 0
     safe_move(movel, posx([X_MIN, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P2: (-210, 500) 이동 완료.")
 def roller_move_p3():
     from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 450; X_MIN = -210
+    Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 350; X_MIN = 0
     safe_move(movel, posx([X_MIN, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P3: (-210, 450) 이동 완료.")
 def roller_move_p4():
     from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 450; X_MAX = 500
+    Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 350; X_MAX = 520
     safe_move(movel, posx([X_MAX, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P4: (500, 450) 이동 완료.")
 def roller_move_p5():
     from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 400; X_MAX = 500
+    Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 250; X_MAX = 520
     safe_move(movel, posx([X_MAX, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P5: (500, 400) 이동 완료.")
 def roller_move_p6():
     from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 400; X_MIN = -210
+    Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 250; X_MIN = 0
     safe_move(movel, posx([X_MIN, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P6: (-210, 400) 이동 완료.")
-def roller_move_p7():
-    from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 300; X_MIN = -210
-    safe_move(movel, posx([X_MIN, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P7: (-210, 300) 이동 완료.")
-def roller_move_p8():
-    from DSR_ROBOT2 import posx, movel
-    Y_CONST = -590; ORIENTATION = [90, -90, 0]; z = 300; X_MAX = 500
-    safe_move(movel, posx([X_MAX, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P8: (500, 300) 이동 완료.")
+# def roller_move_p7():
+#     from DSR_ROBOT2 import posx, movel
+#     Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 300; X_MIN = 0
+#     safe_move(movel, posx([X_MIN, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P7: (-210, 300) 이동 완료.")
+# def roller_move_p8():
+#     from DSR_ROBOT2 import posx, movel
+#     Y_CONST = -440; ORIENTATION = [90, -90, 0]; z = 300; X_MAX = 520
+#     safe_move(movel, posx([X_MAX, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P8: (500, 300) 이동 완료.")
 def roller_move_final_ready():
     from DSR_ROBOT2 import posx, movel
-    ready=posx([500,-590,500,90,-90,0]); safe_move(movel, ready, vel=VELOCITY,acc=ACC); print("--- 'ㄹ' 모양 그리기 완료 및 최종 대기 자세 이동 ---")
+    ready=posx([500,-400,500,90,-90,0]); safe_move(movel, ready, vel=VELOCITY,acc=ACC); print("--- 'ㄹ' 모양 그리기 완료 및 최종 대기 자세 이동 ---")
 def cloth_task():
     from DSR_ROBOT2 import posx,movel,DR_FC_MOD_REL, wait, set_ref_coord,task_compliance_ctrl,set_desired_force, release_compliance_ctrl, release_force
-    ready_pos = posx([500, -580, 500, 90, -90, 90]); attach=posx([0,-40,0,0,0,0]); detach=posx([500,-580,300,90,-90,90]); down = posx([0,0,-200,0,0,0]); next_pos=posx([-80,0,200,0,0,0])
+    ready_pos = posx([500, -500, 500, 90, -90, 90]); attach=posx([0,-20,0,0,0,0]); down = posx([0,0,-300,0,0,0]); 
     safe_move(movel, ready_pos, vel=VELOCITY, acc=ACC)
-    for i in range(3):       
-        set_ref_coord(1); task_compliance_ctrl([3000.00, 3000.00, 10.00, 200.00, 200.00, 200.00]); wait(0.5) 
-        set_desired_force(fd=[0, 0, 5, 0, 0, 0], dir=[0, 0, 1, 0, 0, 0], time=0, mod=DR_FC_MOD_REL); set_ref_coord(0); wait(0.5)
+    for i in range(1,8):    
+        task_compliance_ctrl([500.00, 200.00, 10.00, 10.00, 10.00, 10.00]); wait(0.2) 
         safe_move(movel, attach, vel=VELOCITY,acc=ACC,mod=DR_FC_MOD_REL); safe_move(movel, down, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
-        safe_move(movel, detach, vel=VELOCITY, acc=ACC); detach[0]=detach[0]-80; wait(0.5)
-        set_ref_coord(1); release_force(time=0.0); release_compliance_ctrl(); set_ref_coord(0)
-        safe_move(movel, next_pos, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
-    safe_move(movel, ready_pos, vel=VELOCITY, acc=ACC)
+        release_compliance_ctrl(); 
+        if i<7:
+            next_pos=posx([ready_pos[0]-110*i,-480,500,90,-90,90])   
+            safe_move(movel, next_pos, vel=VELOCITY, acc=ACC)
+    safe_move(movel, posx([500, -480, 500, 90, -90, 90]), vel=VELOCITY, acc=ACC)
 def pickup_roller():
     from DSR_ROBOT2 import posx,movel,wait, set_digital_output, DR_FC_MOD_REL
-    roller= posx([524.98, 122.98, 363.38, 17.81, -178.75, -70.88]); down=posx([0,0,-30,0,0,0,]); pickup=posx([0, 0, 192.34, 0, 0, 0])
+    roller= posx([546.98, 122.98, 363.38, 17.81, -178.75, -70.88]); down=posx([0,0,-30,0,0,0,]); pickup=posx([0, 0, 150, 0, 0, 0]); safe_spot=posx([0,-100,100,0,0,0])
     safe_move(movel, roller, vel=VELOCITY,acc=ACC); set_digital_output(1,0); set_digital_output(2,1); wait(1)
     safe_move(movel, down, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL); set_digital_output(1,1); set_digital_output(2,1); wait(1)
-    safe_move(movel, pickup, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL); print('roller pick up complete')
+    safe_move(movel, pickup, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL); safe_move(movel, safe_spot, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL);print('roller pick up complete')
 def return_roller():
     from DSR_ROBOT2 import posx,movel,wait, set_digital_output, DR_FC_MOD_REL
-    roller= posx([524.98, 122.98, 563.38, 17.81, -178.75, -70.88]); down=posx([0,0,-230,0,0,0,]); pickup=posx([0, 0, 192.34, 0, 0, 0])
-    safe_move(movel, roller, vel=VELOCITY,acc=ACC); safe_move(movel, down, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL)
+    roller= posx([546.98, 122.98, 363.38, 17.81, -178.75, -70.88]); down=posx([0,0,-30,0,0,0,]); pickup=posx([0, 0, 142.34, 0, 0, 0]); safe_spot=posx([566.98,22.98,400.38,17.81, -178.75, -70.88])
+    safe_move(movel, safe_spot, vel=VELOCITY,acc=ACC); safe_move(movel, roller, vel=VELOCITY,acc=ACC); safe_move(movel, down, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL)
     set_digital_output(1,0); set_digital_output(2,1); wait(1); safe_move(movel, pickup, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL)
     print('roller return complete')
 def pickup_cloth():
     from DSR_ROBOT2 import posx,movel,wait, set_digital_output, DR_FC_MOD_REL
-    cloth = posx([610.68, -73.29, 325.61, 83.38, -179.74, -4.56]); down=posx([0,0,-70,0,0,0,]); pickup=posx([0, 0, 115.16, 0, 0, 0])
+    cloth = posx([461, -73.29, 325.61, 83.38, -179.74, -4.56]); down=posx([0,0,-70,0,0,0,]); pickup=posx([0, 0, 115.16, 0, 0, 0])
     safe_move(movel, cloth, vel=VELOCITY,acc=ACC); set_digital_output(1,0); set_digital_output(2,1); wait(1)
     safe_move(movel, down, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL); set_digital_output(1,1); set_digital_output(2,0); wait(1)
     safe_move(movel, pickup, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL); print('cloth pick up complete')
 def return_cloth():
     from DSR_ROBOT2 import posx,movel,wait, set_digital_output, DR_FC_MOD_REL
-    cloth = posx([610.68, -73.29, 325.61, 83.38, -179.74, -4.56]); down=posx([0,0,-70,0,0,0,]); pickup=posx([0, 0, 115.16, 0, 0, 0])
+    cloth = posx([461, -73.29, 325.61, 83.38, -179.74, -4.56]); down=posx([0,0,-70,0,0,0,]); pickup=posx([0, 0, 115.16, 0, 0, 0])
     safe_move(movel, cloth, vel=VELOCITY,acc=ACC); safe_move(movel, down, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL)
     set_digital_output(1,0); set_digital_output(2,1); wait(1); safe_move(movel, pickup, vel=VELOCITY,acc=ACC, mod=DR_FC_MOD_REL)
     print('cloth return complete')
 
 def task_sequence_roller():
     return [
-        move_to_safe_pos, pickup_roller, roller_move_p1, roller_move_p2, roller_move_p3, roller_move_p4, roller_move_p5, roller_move_p6, roller_move_p7, roller_move_p8, roller_move_final_ready, return_roller
+        move_to_safe_pos, pickup_roller, roller_move_p1, roller_move_p2, roller_move_p3, roller_move_p4, roller_move_p5, roller_move_p6, roller_move_final_ready, return_roller
     ]
 def task_sequence_cloth():
     return [
@@ -246,7 +246,7 @@ def task_sequence_cloth():
     ]
 def task_sequence_full():
     return [
-        move_to_safe_pos, pickup_roller, roller_move_p1, roller_move_p2, roller_move_p3, roller_move_p4, roller_move_p5, roller_move_p6, roller_move_p7, roller_move_p8, roller_move_final_ready, return_roller, pickup_cloth, cloth_task, return_cloth
+        move_to_safe_pos, pickup_roller, roller_move_p1, roller_move_p2, roller_move_p3, roller_move_p4, roller_move_p5, roller_move_p6, roller_move_final_ready, return_roller, pickup_cloth, cloth_task, return_cloth
     ]
 TASK_CMD_MAP = {
     1: task_sequence_roller(), 2: task_sequence_cloth(), 3: task_sequence_full()
@@ -304,11 +304,11 @@ def perform_task_logic(cmd):
             # [추가] FULL_TASK 세부 단계 구분
             phase_suffix = ""
             if cmd == 3:
-                # 0 ~ 11: Roller (총 12단계)
-                if current_step_index <= 12: 
+                # 0 ~ 11: Roller (총 10단계)
+                if current_step_index <= 10: 
                     phase_suffix = "_ROLLER_PHASE"
                 # 13 ~ 15: Cloth (나머지 단계)
-                elif current_step_index > 12:
+                elif current_step_index > 10:
                     phase_suffix = "_CLOTH_PHASE"
 
             with progress_lock:

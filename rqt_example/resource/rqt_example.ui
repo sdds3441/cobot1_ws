@@ -107,7 +107,7 @@
         </font>
        </property>
        <property name="text">
-        <string>emergency stop</string>
+        <string>stop work</string>
        </property>
       </widget>
      </item>
