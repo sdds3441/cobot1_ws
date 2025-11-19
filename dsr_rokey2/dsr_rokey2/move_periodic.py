@@ -49,14 +49,19 @@ def perform_task():
 
     # 반복 동작 수행
     print("move_home")
-    for i in range(5):
-        if i==0:
-            movej(JReady, vel=VELOCITY, acc=ACC)
-        movel(pos1, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
-        movej([10,20,0,0,0,0], vel=VELOCITY, acc=ACC,mod=DR_FC_MOD_REL)
-        movel(pos2, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
+    # for i in range(5):
+    #     if i==0:
+    #         movej(JReady, vel=VELOCITY, acc=ACC)
+    #     movel(pos1, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
+    #     movej([10,20,0,0,0,0], vel=VELOCITY, acc=ACC,mod=DR_FC_MOD_REL)
+    #     movel(pos2, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
     #move_periodic(amp=[10,0,0,0,30,0], period=5.0, atime=2,repeat=5, ref=DR_TOOL)
 
+    movej(JReady, vel=VELOCITY, acc=ACC)
+    movej([0, -90, 90, 0, 90, 0], vel=VELOCITY, acc=ACC)
+    movej(JReady, vel=VELOCITY, acc=ACC)
+    movej([0, -90, 90, 0, 90, 0], vel=VELOCITY, acc=ACC)
+    print("Task completed.")
    
     
 

@@ -1,51 +1,36 @@
-# pose_logger.py
 import rclpy
 from rclpy.node import Node
-from dsr_msgs2.srv import GetCurrentPosx
+from std_msgs.msg import String
 
-class PoseLogger(Node):
+
+class NumberStringPublisher(Node):
     def __init__(self):
-        super().__init__('pose_logger')
+        super().__init__('number_string_publisher')
+        
+        # publisher 생성
+        self.publisher = self.create_publisher(String, '/dsr01/task_command', 10)
 
-        self.cli = self.create_client(
-            GetCurrentPosx, '/dsr01/aux_control/get_current_posx'
-        )
+        # 1부터 시작
+        self.counter = 1
 
-        while not self.cli.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info("Waiting for service...")
+        # 0.5초마다 timer 콜백 실행
+        self.timer = self.create_timer(0.5, self.timer_callback)
 
-        self.get_logger().info("Connected to get_current_posx")
-
-        self.timer = self.create_timer(1.0, self.timer_callback)
+        self.get_logger().info("Number String Publisher Started")
 
     def timer_callback(self):
-        req = GetCurrentPosx.Request()
-        req.ref = 0
+        msg = String()
+        msg.data = str(self.counter)   # 숫자를 문자열로 변환
+        self.publisher.publish(msg)
 
-        future = self.cli.call_async(req)
-        future.add_done_callback(self.response_callback)
+        self.get_logger().info(f"Published: '{msg.data}'")
 
-    def response_callback(self, future):
-        try:
-            res = future.result()
-        except Exception as e:
-            self.get_logger().error(f"Service call failed: {e}")
-            return
-
-        if not res.success:
-            return
-
-        arr = res.task_pos_info[0].data
-        x, y, z, rx, ry, rz = arr[:6]
-        self.get_logger().info(
-            f"POSE xyz: {[round(v,3) for v in [x,y,z]]}, "
-            f"rpy: {[round(v,3) for v in [rx,ry,rz]]}"
-        )
+        self.counter += 1  # 다음 숫자를 위해 증가
 
 
 def main(args=None):
     rclpy.init(args=args)
-    node = PoseLogger()
+    node = NumberStringPublisher()
 
     try:
         rclpy.spin(node)

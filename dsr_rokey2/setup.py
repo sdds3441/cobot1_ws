@@ -34,6 +34,8 @@ setup(
             'cleanning_task = dsr_rokey2.cleanning_task:main',
             'pose_reader = dsr_rokey2.pose_reader:main',
             'pose_reader2 = dsr_rokey2.pose_reader2:main',
+            'tf_publisher = dsr_rokey2.tf_publisher:main',
+            'tf_subscriber = dsr_rokey2.tf_subscriber:main',
         ],
     },
 )
