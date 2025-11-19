@@ -198,19 +198,19 @@ def roller_move_p6():
 #     safe_move(movel, posx([X_MAX, Y_CONST, z, *ORIENTATION]), vel=VELOCITY, acc=ACC); print("Roller P8: (500, 300) 이동 완료.")
 def roller_move_final_ready():
     from DSR_ROBOT2 import posx, movel
-    ready=posx([500,-400,500,90,-90,0]); safe_move(movel, ready, vel=VELOCITY,acc=ACC); print("--- 'ㄹ' 모양 그리기 완료 및 최종 대기 자세 이동 ---")
+    ready=posx([520,-400,500,90,-90,0]); safe_move(movel, ready, vel=VELOCITY,acc=ACC); print("--- 'ㄹ' 모양 그리기 완료 및 최종 대기 자세 이동 ---")
 def cloth_task():
-    from DSR_ROBOT2 import posx,movel,DR_FC_MOD_REL, wait, set_ref_coord,task_compliance_ctrl,set_desired_force, release_compliance_ctrl, release_force
-    ready_pos = posx([500, -500, 500, 90, -90, 90]); attach=posx([0,-20,0,0,0,0]); down = posx([0,0,-300,0,0,0]); 
+    from DSR_ROBOT2 import posx,movel,DR_FC_MOD_REL, wait,task_compliance_ctrl, release_compliance_ctrl
+    ready_pos = posx([300, -500, 500, 90, -90, 0]); attach=posx([0,-10,0,0,0,0]); down = posx([0,0,-300,0,0,0]); 
     safe_move(movel, ready_pos, vel=VELOCITY, acc=ACC)
-    for i in range(1,8):    
-        task_compliance_ctrl([500.00, 200.00, 10.00, 10.00, 10.00, 10.00]); wait(0.2) 
+    for i in range(1,10):    
+        task_compliance_ctrl([200.00, 100.00, 10.00, 10.00, 10.00, 10.00]); wait(0.2) 
         safe_move(movel, attach, vel=VELOCITY,acc=ACC,mod=DR_FC_MOD_REL); safe_move(movel, down, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
         release_compliance_ctrl(); 
-        if i<7:
-            next_pos=posx([ready_pos[0]-110*i,-480,500,90,-90,90])   
+        if i<9:
+            next_pos=posx([ready_pos[0]-70*i,-490,500,90,-90,0])   
             safe_move(movel, next_pos, vel=VELOCITY, acc=ACC)
-    safe_move(movel, posx([500, -480, 500, 90, -90, 90]), vel=VELOCITY, acc=ACC)
+    safe_move(movel, posx([300, -480, 500, 90, -90, 0]), vel=VELOCITY, acc=ACC)
 def pickup_roller():
     from DSR_ROBOT2 import posx,movel,wait, set_digital_output, DR_FC_MOD_REL
     roller= posx([546.98, 122.98, 363.38, 17.81, -178.75, -70.88]); down=posx([0,0,-30,0,0,0,]); pickup=posx([0, 0, 150, 0, 0, 0]); safe_spot=posx([0,-100,100,0,0,0])
