@@ -1,1 +1,0 @@
-/home/nj/cobot1_ws/src/rqt_example/src/rqt_example/examples.py

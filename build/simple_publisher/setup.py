@@ -1,1 +1,0 @@
-/home/nj/cobot1_ws/src/simple_publisher/setup.py
