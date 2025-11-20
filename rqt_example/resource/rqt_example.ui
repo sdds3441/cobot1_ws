@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>857</width>
+    <width>1048</width>
     <height>410</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>360</x>
      <y>30</y>
-     <width>481</width>
+     <width>671</width>
      <height>371</height>
     </rect>
    </property>
@@ -28,10 +28,10 @@
    <widget class="QWidget" name="board_widget" native="true">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>60</y>
-      <width>391</width>
-      <height>171</height>
+      <x>20</x>
+      <y>40</y>
+      <width>641</width>
+      <height>311</height>
      </rect>
     </property>
    </widget>
