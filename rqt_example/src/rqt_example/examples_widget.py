@@ -85,6 +85,7 @@ class ExamplesWidget(QWidget):
         self.push_button_start.clicked.connect(self.on_start_clicked)
         # self.push_button_end.clicked.connect(self.on_end_clicked) # push_button_end가 없으므로 연결 제거
         self.push_button_estop.clicked.connect(self.on_estop_clicked)
+        self.push_button_continue.clicked.connect(self.on_start_continue_clicked)
 
     def _format_status(self, status):
         """상태 문자열에서 접미사를 제거하고 줄바꿈 및 공백을 추가하여 가독성을 높입니다."""
@@ -173,6 +174,25 @@ class ExamplesWidget(QWidget):
     #     self.pub_start.publish(Int32(data=0))
     #     self.node.get_logger().info('END clicked: Sent CMD 0 (Pause/Stop)')
     #     # UI 상태는 로봇 노드에서 STOP 또는 IDLE 메시지를 받아 업데이트됨
+
+    def on_start_continue_clicked(self):
+        """사용자가 입력한 정수를 읽고 ROS2 토픽으로 발행"""
+        try:
+            # QLineEdit에서 문자열 읽고 정수 변환
+            user_input = int(self.lineEdit_input.text())
+        except ValueError:
+            self.node.get_logger().warn("유효한 정수를 입력하세요!")
+            return
+        roller_checked = self.checkBox_roller.isChecked()
+        cloth_checked = self.checkBox_cloth.isChecked()
+
+        if roller_checked:
+            msg_value = user_input +100
+        elif cloth_checked:
+            msg_value= user_input + 200
+        
+        self.pub_start.publish(Int32(data=msg_value))
+        self.node.get_logger().info(f"CONTINUE clicked: Int32= {msg_value}")
 
     def on_estop_clicked(self):
         self.reset_states()

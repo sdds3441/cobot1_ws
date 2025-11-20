@@ -104,6 +104,25 @@ def cmd_callback(msg):
                  shared_status = "FULL_TASK_ROLLER_PHASE_RUNNING"
              else:
                  shared_status = TASK_NAME_MAP.get(new_cmd, "UNKNOWN_TASK") + "_RUNNING"
+    elif 100<new_cmd<200:
+        active_task_cmd = 1  # roller task
+        current_step_index = (new_cmd-100)//10 # current_step_index +1 번째 step부터 실행
+        latest_cmd = active_task_cmd
+        with progress_lock:
+            shared_progress = int((current_step_index / len(task_sequence_roller())) * 100)
+            shared_status = TASK_NAME_MAP.get(new_cmd, "UNKNOWN_TASK") + "_RUNNING"
+        print("ROLLER_CONTINUE 수신: ROLLER TASK {current_step_index}번째부터 시작")
+
+    elif 200<new_cmd<300:
+        active_task_cmd = 2 # cloth
+        current_step_index = (new_cmd-200)//25 # current_step_index +1 번째 step부터 실행
+        latest_cmd = active_task_cmd
+        with progress_lock:
+            shared_progress = int((current_step_index / len(task_sequence_cloth())) *100)
+            shared_status = TASK_NAME_MAP.get(new_cmd, "UNKNOWN_TASK") + "_RUNNING"
+        print("CLOTH_CONTINUE 수신: ROLLER TASK {current_step_index}번째부터 시작")
+
+
         
     # 2. Pause (0): 일시 정지
     elif new_cmd == 0 and active_task_cmd != 0 and latest_cmd != 0:
@@ -201,14 +220,20 @@ def roller_move_final_ready():
     ready=posx([520,-400,500,90,-90,0]); safe_move(movel, ready, vel=VELOCITY,acc=ACC); print("--- 'ㄹ' 모양 그리기 완료 및 최종 대기 자세 이동 ---")
 def cloth_task():
     from DSR_ROBOT2 import posx,movel,DR_FC_MOD_REL, wait,task_compliance_ctrl, release_compliance_ctrl
-    ready_pos = posx([300, -500, 500, 90, -90, 0]); attach=posx([0,-10,0,0,0,0]); down = posx([0,0,-300,0,0,0]); 
+    ready_pos = posx([300, -500, 500, 90, -90, 0]); attach=posx([0,-10,0,0,0,0]); down = posx([0,0,-300,0,0,0])
+    LOOP_COUNT = 10
+    global progress_percent, shared_progress
     safe_move(movel, ready_pos, vel=VELOCITY, acc=ACC)
-    for i in range(1,10):    
+    for i in range(LOOP_COUNT):    
         task_compliance_ctrl([200.00, 100.00, 10.00, 10.00, 10.00, 10.00]); wait(0.2) 
         safe_move(movel, attach, vel=VELOCITY,acc=ACC,mod=DR_FC_MOD_REL); safe_move(movel, down, vel=VELOCITY, acc=ACC, mod=DR_FC_MOD_REL)
-        release_compliance_ctrl(); 
-        if i<9:
-            next_pos=posx([ready_pos[0]-70*i,-490,500,90,-90,0])   
+        release_compliance_ctrl()
+        partial_cloth = (i+1)/LOOP_COUNT
+        progress_percent = int (((current_step_index + partial_cloth) / total_steps)*100)
+        with progress_lock:
+                 shared_progress = progress_percent 
+        if i<(LOOP_COUNT-1):
+            next_pos=posx([ready_pos[0]-70*(i+1),-490,500,90,-90,0])   
             safe_move(movel, next_pos, vel=VELOCITY, acc=ACC)
     safe_move(movel, posx([300, -480, 500, 90, -90, 0]), vel=VELOCITY, acc=ACC)
 def pickup_roller():
@@ -249,7 +274,7 @@ def task_sequence_full():
         move_to_safe_pos, pickup_roller, roller_move_p1, roller_move_p2, roller_move_p3, roller_move_p4, roller_move_p5, roller_move_p6, roller_move_final_ready, return_roller, pickup_cloth, cloth_task, return_cloth
     ]
 TASK_CMD_MAP = {
-    1: task_sequence_roller(), 2: task_sequence_cloth(), 3: task_sequence_full()
+    1: task_sequence_roller(), 2: task_sequence_cloth(), 3: task_sequence_full(), 120: task_sequence_full()
 }
     
     
@@ -261,9 +286,12 @@ def perform_task_logic(cmd):
     """
     cmd 값(1, 2, 3)에 따라 작업을 순차적으로 수행하며, current_step_index를 관리합니다.
     """
-    global latest_cmd, active_task_cmd, current_step_index, shared_progress, progress_lock, final_publish_needed, shared_status
+    global latest_cmd, active_task_cmd, current_step_index, shared_progress, progress_percent, total_steps, progress_lock, final_publish_needed, shared_status
     
     task_steps = TASK_CMD_MAP.get(cmd)
+
+    if cmd == 120:
+        print("success")
     if not task_steps:
         print(f"작업 ID {cmd}에 해당하는 작업 목록이 없습니다.")
         latest_cmd = 0
